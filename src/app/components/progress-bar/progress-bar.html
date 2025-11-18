@@ -1,0 +1,22 @@
+<div class="progress-bar-container">
+  <span class="time-display current-time">
+    {{ formatTime(currentTime) }}
+  </span>
+
+  <div class="progress-bar-wrapper" (click)="onSeek($event)">
+    <div class="progress-bar-bg">
+      <div 
+        class="progress-bar-fill"
+        [style.width.%]="progress">
+      </div>
+      <div 
+        class="progress-bar-handle"
+        [style.left.%]="progress">
+      </div>
+    </div>
+  </div>
+
+  <span class="time-display duration-time">
+    {{ formatTime(duration) }}
+  </span>
+</div>

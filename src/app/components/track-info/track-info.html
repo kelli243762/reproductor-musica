@@ -1,0 +1,19 @@
+<div class="track-info-container">
+  <div *ngIf="!track" class="no-track">
+    <div class="default-album">🎵</div>
+    <h2>No hay canción reproduciéndose</h2>
+    <p>Busca y selecciona una canción para comenzar</p>
+  </div>
+
+  <div *ngIf="track" class="track-info">
+    <div class="album-art">
+      <img [src]="albumImage" [alt]="track.name" />
+      <div class="vinyl-effect"></div>
+    </div>
+    <div class="track-details">
+      <h1 class="track-name">{{ track.name }}</h1>
+      <h2 class="artist-name">{{ artistNames }}</h2>
+      <p class="album-name">{{ track.album.name }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="search-container">
+  <div class="search-input-wrapper">
+    <span class="search-icon">🔍</span>
+    <input 
+      type="text" 
+      class="search-input"
+      placeholder="Buscar canciones, artistas..."
+      [(ngModel)]="searchQuery"
+      (keypress)="onKeyPress($event)"
+    />
+    <button 
+      *ngIf="searchQuery" 
+      class="clear-button"
+      (click)="clearSearch()">
+      ✕
+    </button>
+  </div>
+  <button class="search-button" (click)="onSearch()">
+    Buscar
+  </button>
+</div>

@@ -1,0 +1,131 @@
+.player-container {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(180deg, #1e3a5f 0%, #121212 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pantalla de Login */
+.login-screen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.login-content {
+  text-align: center;
+  padding: 60px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.login-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.login-content p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.login-button {
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #1db954;
+  color: white;
+  border-radius: 500px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
+}
+
+.login-button:hover {
+  background: #1ed760;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(29, 185, 84, 0.6);
+}
+
+/* Aplicación Principal */
+.main-app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #121212;
+}
+
+/* Header */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logout-button {
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-radius: 500px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Contenido */
+.app-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 350px;
+  background: #000000;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+/* Player Main */
+.player-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: linear-gradient(180deg, #1e3a5f 0%, #121212 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 200px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .player-main {
+    padding: 20px;
+  }
+}

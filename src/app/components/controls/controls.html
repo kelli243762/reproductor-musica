@@ -1,0 +1,44 @@
+<div class="controls-container">
+  <!-- Controles principales -->
+  <div class="main-controls">
+    <button 
+      class="control-button previous-button"
+      (click)="onPrevious()"
+      title="Anterior">
+      ⏮
+    </button>
+
+    <button 
+      class="control-button play-pause-button"
+      (click)="onPlayPause()"
+      [title]="isPlaying ? 'Pausar' : 'Reproducir'">
+      {{ isPlaying ? '⏸' : '▶' }}
+    </button>
+
+    <button 
+      class="control-button next-button"
+      (click)="onNext()"
+      title="Siguiente">
+      ⏭
+    </button>
+  </div>
+
+  <!-- Control de volumen -->
+  <div class="volume-controls">
+    <button 
+      class="volume-icon"
+      (click)="toggleMute()"
+      [title]="isMuted ? 'Activar sonido' : 'Silenciar'">
+      {{ volumeIcon }}
+    </button>
+    <input 
+      type="range" 
+      class="volume-slider"
+      min="0" 
+      max="100" 
+      [value]="volume"
+      (input)="onVolumeChange($event)"
+    />
+    <span class="volume-level">{{ volume }}%</span>
+  </div>
+</div>

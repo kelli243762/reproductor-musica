@@ -1,0 +1,78 @@
+<div class="playlist-container">
+  <!-- Tabs -->
+  <div class="playlist-tabs">
+    <button 
+      class="tab-button"
+      [class.active]="activeTab === 'playlist'"
+      (click)="switchTab('playlist')">
+      Mi Playlist ({{ tracks.length }})
+    </button>
+    <button 
+      class="tab-button"
+      [class.active]="activeTab === 'search'"
+      (click)="switchTab('search')">
+      Resultados ({{ searchResults.length }})
+    </button>
+  </div>
+
+  <!-- Contenido de Playlist -->
+  <div class="playlist-content" *ngIf="activeTab === 'playlist'">
+    <div *ngIf="tracks.length === 0" class="empty-state">
+      <p>🎵</p>
+      <p>Tu playlist está vacía</p>
+      <small>Busca y agrega canciones</small>
+    </div>
+
+    <div class="track-list">
+      <div 
+        *ngFor="let track of tracks; let i = index"
+        class="track-item"
+        [class.active]="isCurrentTrack(track)"
+        (click)="selectTrack(track)">
+        <div class="track-number">{{ i + 1 }}</div>
+        <img [src]="track.album.images[2]?.url || track.album.images[0]?.url" 
+             [alt]="track.name"
+             class="track-thumbnail" />
+        <div class="track-info">
+          <div class="track-title">{{ track.name }}</div>
+          <div class="track-artist">
+            {{ getArtistNames(track) }}
+          </div>
+        </div>
+        <div class="track-duration">
+          {{ formatDuration(track.duration_ms) }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido de Búsqueda -->
+  <div class="playlist-content" *ngIf="activeTab === 'search'">
+    <div *ngIf="searchResults.length === 0" class="empty-state">
+      <p>🔍</p>
+      <p>No hay resultados</p>
+      <small>Usa la barra de búsqueda</small>
+    </div>
+
+    <div class="track-list">
+      <div 
+        *ngFor="let track of searchResults; let i = index"
+        class="track-item"
+        (click)="selectTrack(track)">
+        <div class="track-number">{{ i + 1 }}</div>
+        <img [src]="track.album.images[2]?.url || track.album.images[0]?.url" 
+             [alt]="track.name"
+             class="track-thumbnail" />
+        <div class="track-info">
+          <div class="track-title">{{ track.name }}</div>
+          <div class="track-artist">
+            {{ getArtistNames(track) }}
+          </div>
+        </div>
+        <div class="track-duration">
+          {{ formatDuration(track.duration_ms) }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

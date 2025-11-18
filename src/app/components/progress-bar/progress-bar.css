@@ -1,0 +1,80 @@
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.time-display {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  min-width: 45px;
+  font-variant-numeric: tabular-nums;
+}
+
+.current-time {
+  text-align: right;
+}
+
+.duration-time {
+  text-align: left;
+}
+
+.progress-bar-wrapper {
+  flex: 1;
+  cursor: pointer;
+  padding: 10px 0;
+}
+
+.progress-bar-bg {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: visible;
+}
+
+.progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #1db954;
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.progress-bar-wrapper:hover .progress-bar-fill {
+  background: #1ed760;
+}
+
+.progress-bar-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar-wrapper:hover .progress-bar-handle {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .progress-bar-container {
+    gap: 10px;
+  }
+
+  .time-display {
+    font-size: 0.75rem;
+    min-width: 40px;
+  }
+}

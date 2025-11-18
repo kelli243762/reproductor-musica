@@ -1,0 +1,57 @@
+<div class="player-container">
+  <!-- Pantalla de Login -->
+  <div *ngIf="!isAuthenticated" class="login-screen">
+    <div class="login-content">
+      <h1>🎵 Music Player</h1>
+      <p>Conecta tu cuenta de Spotify para comenzar</p>
+      <button class="login-button" (click)="login()">
+        Conectar con Spotify
+      </button>
+    </div>
+  </div>
+
+  <!-- Aplicación Principal -->
+  <div *ngIf="isAuthenticated" class="main-app">
+    <!-- Barra de búsqueda superior -->
+    <header class="app-header">
+      <app-search-bar 
+        (search)="onSearch($event)">
+      </app-search-bar>
+      <button class="logout-button" (click)="logout()">Salir</button>
+    </header>
+
+    <!-- Contenido principal -->
+    <div class="app-content">
+      <!-- Playlist lateral -->
+      <aside class="sidebar">
+        <app-playlist 
+          [tracks]="playlist"
+          [searchResults]="searchResults"
+          [currentTrack]="playerState?.currentTrack || null"
+          (trackSelect)="onTrackSelect($event)">
+        </app-playlist>
+      </aside>
+
+      <!-- Reproductor central -->
+      <main class="player-main">
+        <app-track-info 
+          [track]="playerState?.currentTrack || null">
+        </app-track-info>
+        
+        <app-controls 
+          [isPlaying]="playerState?.isPlaying || false"
+          (playPause)="onPlayPause()"
+          (next)="onNext()"
+          (previous)="onPrevious()"
+          (volumeChange)="onVolumeChange($event)">
+        </app-controls>
+        
+        <app-progress-bar 
+          [currentTime]="playerState?.currentTime || 0"
+          [duration]="playerState?.duration || 0"
+          (seek)="onSeek($event)">
+        </app-progress-bar>
+      </main>
+    </div>
+  </div>
+</div>
