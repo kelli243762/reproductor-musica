@@ -1,0 +1,60 @@
+<div class="artist-albums-container">
+  
+  <header class="artist-header" *ngIf="artist">
+    <button class="back-button" (click)="goBack()">
+      ← Volver
+    </button>
+    <div class="artist-banner">
+      <div class="artist-image-large">
+        <img [src]="getArtistImage()" [alt]="artist.name">
+      </div>
+      <div class="artist-details">
+        <h1>{{ artist.name }}</h1> //Muestra info 
+        <p class="followers">{{ artist.followers.total.toLocaleString() }} seguidores</p>
+        <div class="genres" *ngIf="artist.genres.length > 0">
+          <span class="genre" *ngFor="let genre of artist.genres.slice(0, 5)">
+            {{ genre }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+  <div class="albums-section">
+    <h2>Álbumes</h2>
+    
+    <div *ngIf="isLoading" class="loading">
+      <p>Cargando álbumes...</p>
+    </div>
+
+    <div class="albums-grid" *ngIf="!isLoading && albums.length > 0">
+      <div 
+        class="album-card" 
+        *ngFor="let album of albums"
+
+
+        (click)="goToAlbumTracks(album.id)">
+
+        
+        <div class="album-cover">
+          <img [src]="getAlbumImage(album)" [alt]="album.name">
+          <div class="play-overlay">
+            <span class="play-icon">▶</span>
+          </div>
+        </div>
+        <div class="album-info">
+          <h3>{{ album.name }}</h3>
+          <p class="album-meta">
+            {{ getReleaseYear(album.release_date) }} • {{ album.total_tracks }} canciones
+          </p>
+          <span class="album-type">{{ album.album_type }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="no-albums" *ngIf="!isLoading && albums.length === 0">
+      <p>No se encontraron álbumes</p>
+    </div>
+  </div>
+</div>

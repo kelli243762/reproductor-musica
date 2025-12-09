@@ -12,14 +12,14 @@ export const SpotifyConfig = {
   ],
 };
 
-// Generar Code Verifier para PKCE
+
 function generateRandomString(length: number): string {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   const values = crypto.getRandomValues(new Uint8Array(length));
   return values.reduce((acc, x) => acc + possible[x % possible.length], '');
 }
 
-// Generar Code Challenge
+
 async function sha256(plain: string): Promise<ArrayBuffer> {
   const encoder = new TextEncoder();
   const data = encoder.encode(plain);

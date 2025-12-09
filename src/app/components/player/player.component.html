@@ -1,8 +1,8 @@
 <div class="player-container">
-  <!-- Pantalla de Login -->
+  
   <div *ngIf="!isAuthenticated" class="login-screen">
     <div class="login-content">
-      <h1>🎵 Music Player</h1>
+      <h1>Music Player</h1>
       <p>Conecta tu cuenta de Spotify para comenzar</p>
       <button class="login-button" (click)="login()">
         Conectar con Spotify
@@ -10,17 +10,32 @@
     </div>
   </div>
 
-  <!-- Aplicación Principal -->
+  
   <div *ngIf="isAuthenticated" class="main-app">
     <!-- Barra de búsqueda superior -->
     <header class="app-header">
+
+
+      
+
       <app-search-bar 
         (search)="onSearch($event)">
       </app-search-bar>
-      <button class="logout-button" (click)="logout()">Salir</button>
+      
+       //recibe evento
+
+
+
+
+      <div class="header-buttons">
+        <button class="artist-search-button" (click)="goToArtistSearch()">
+          🎤 Buscar Artistas
+        </button>
+        <button class="logout-button" (click)="logout()">Salir</button>
+      </div>
     </header>
 
-    <!-- Contenido principal -->
+    
     <div class="app-content">
       <!-- Playlist lateral -->
       <aside class="sidebar">
@@ -32,7 +47,7 @@
         </app-playlist>
       </aside>
 
-      <!-- Reproductor central -->
+      
       <main class="player-main">
         <app-track-info 
           [track]="playerState?.currentTrack || null">

@@ -1,6 +1,10 @@
 <div class="search-container">
   <div class="search-input-wrapper">
     <span class="search-icon">🔍</span>
+
+
+
+
     <input 
       type="text" 
       class="search-input"
@@ -8,6 +12,9 @@
       [(ngModel)]="searchQuery"
       (keypress)="onKeyPress($event)"
     />
+
+
+
     <button 
       *ngIf="searchQuery" 
       class="clear-button"
@@ -19,3 +26,4 @@
     Buscar
   </button>
 </div>
+

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Track, SearchResponse } from '../models/track.model';
+import { Track, SearchResponse, ArtistSearchResponse, ArtistDetailed, AlbumsResponse, AlbumTracksResponse } from '../models/track.model';
 import { SpotifyConfig, getAuthUrl } from '../config/spotify.config';
 
 @Injectable({
@@ -92,16 +92,19 @@ export class SpotifyService {
   }
 
   private getHeaders(): HttpHeaders {
-    const token = this.getToken();
+
+    const token = this.getToken();//obtiene un token 
+
     return new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`, //token de acceso
       'Content-Type': 'application/json'
     });
   }
 
   searchTracks(query: string): Observable<SearchResponse> {
     const url = `${this.apiUrl}/search?q=${encodeURIComponent(query)}&type=track&limit=20`;
-    return this.http.get<SearchResponse>(url, { headers: this.getHeaders() });
+
+    return this.http.get<SearchResponse>(url, { headers: this.getHeaders() });//hace la peticion/envia/le regresa en json
   }
 
   getCurrentUser(): Observable<any> {
@@ -123,5 +126,35 @@ export class SpotifyService {
     return this.http.get(`${this.apiUrl}/recommendations?seed_tracks=${seeds}`, {
       headers: this.getHeaders()
     });
+  }
+
+  
+  searchArtists(query: string): Observable<ArtistSearchResponse> {
+    const url = `${this.apiUrl}/search?q=${encodeURIComponent(query)}&type=artist&limit=20`;
+    return this.http.get<ArtistSearchResponse>(url, { headers: this.getHeaders() });
+  }
+
+  
+  getArtist(artistId: string): Observable<ArtistDetailed> {
+    const url = `${this.apiUrl}/artists/${artistId}`;
+    return this.http.get<ArtistDetailed>(url, { headers: this.getHeaders() });
+  }
+
+  
+  getArtistAlbums(artistId: string): Observable<AlbumsResponse> {
+    const url = `${this.apiUrl}/artists/${artistId}/albums?include_groups=album,single&limit=50`;
+    return this.http.get<AlbumsResponse>(url, { headers: this.getHeaders() });
+  }
+
+  
+  getAlbumTracks(albumId: string): Observable<AlbumTracksResponse> {
+    const url = `${this.apiUrl}/albums/${albumId}/tracks`;
+    return this.http.get<AlbumTracksResponse>(url, { headers: this.getHeaders() });
+  }
+
+  
+  getAlbum(albumId: string): Observable<any> {
+    const url = `${this.apiUrl}/albums/${albumId}`;
+    return this.http.get(url, { headers: this.getHeaders() });
   }
 }

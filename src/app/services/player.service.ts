@@ -49,7 +49,7 @@ export class PlayerService {
     this.playerStateSubject.next({ ...currentState, ...changes });
   }
 
-  // Cargar y reproducir una canción
+  
   playTrack(track: Track): void {
     if (!track.preview_url) {
       console.warn('Esta canción no tiene preview disponible');
@@ -68,7 +68,7 @@ export class PlayerService {
     });
   }
 
-  // Play/Pause
+  
   togglePlayPause(): void {
     const state = this.playerStateSubject.value;
     
@@ -92,7 +92,7 @@ export class PlayerService {
     this.updatePlayerState({ isPlaying: false });
   }
 
-  // Siguiente canción
+  
   next(): void {
     if (this.currentIndex < this.playlist.length - 1) {
       this.currentIndex++;
@@ -100,7 +100,7 @@ export class PlayerService {
     }
   }
 
-  // Canción anterior
+  
   previous(): void {
     if (this.currentIndex > 0) {
       this.currentIndex--;
@@ -108,19 +108,19 @@ export class PlayerService {
     }
   }
 
-  // Control de volumen
+  
   setVolume(volume: number): void {
     this.audio.volume = volume;
     this.updatePlayerState({ volume });
   }
 
-  // Seek (mover la posición de reproducción)
+  
   seek(time: number): void {
     this.audio.currentTime = time;
     this.updatePlayerState({ currentTime: time });
   }
 
-  // Cargar playlist
+  
   loadPlaylist(tracks: Track[], startIndex: number = 0): void {
     this.playlist = tracks;
     this.currentIndex = startIndex;
@@ -129,12 +129,12 @@ export class PlayerService {
     }
   }
 
-  // Obtener playlist actual
+  
   getPlaylist(): Track[] {
     return this.playlist;
   }
 
-  // Obtener índice actual
+  
   getCurrentIndex(): number {
     return this.currentIndex;
   }

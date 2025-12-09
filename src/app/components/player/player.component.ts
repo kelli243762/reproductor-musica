@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { SpotifyService } from '../../services/spotify.service';
 import { PlayerService } from '../../services/player.service';
 import { Track, PlayerState } from '../../models/track.model';
@@ -9,6 +10,8 @@ import { TrackInfoComponent } from '../track-info/track-info';
 import { ControlsComponent } from '../controls/controls';
 import { ProgressBarComponent } from '../progress-bar/progress-bar';
 import { PlaylistComponent } from '../playlist/playlist';
+
+
 
 @Component({
   selector: 'app-player',
@@ -24,32 +27,45 @@ import { PlaylistComponent } from '../playlist/playlist';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css']
 })
+
+
 export class PlayerComponent implements OnInit {
+
   isAuthenticated = false;
+
   playerState: PlayerState | null = null;
-  searchResults: Track[] = [];
+
+  searchResults: Track[] = [];//Guarda la busqueda
+  
+
   playlist: Track[] = [];
 
   constructor(
     private spotifyService: SpotifyService,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    private router: Router
   ) {}
 
   async ngOnInit(): Promise<void> {
-    // Manejar callback de Spotify
+    
     if (window.location.search.includes('code')) {
       await this.spotifyService.handleCallback();
     }
 
-    // Suscribirse al estado de autenticación
-    this.spotifyService.token$.subscribe(token => {
+
+    
+    this.spotifyService.token$.subscribe(token => {//llama al servicio de spotify
+      
+      
+      
+      
       this.isAuthenticated = !!token;
       if (token) {
         this.loadInitialData();
       }
     });
 
-    // Suscribirse al estado del reproductor
+    
     this.playerService.playerState$.subscribe(state => {
       this.playerState = state;
     });
@@ -66,6 +82,7 @@ export class PlayerComponent implements OnInit {
 
   onSearch(query: string): void {
     if (query.trim()) {
+
       this.spotifyService.searchTracks(query).subscribe({
         next: (response) => {
           this.searchResults = response.tracks.items;
@@ -83,7 +100,7 @@ export class PlayerComponent implements OnInit {
       this.playlist = [...this.playlist, track];
     }
     
-    // Reproducir la canción
+    
     const index = this.playlist.findIndex(t => t.id === track.id);
     this.playerService.loadPlaylist(this.playlist, index);
   }
@@ -108,8 +125,12 @@ export class PlayerComponent implements OnInit {
     this.playerService.setVolume(volume);
   }
 
+  goToArtistSearch(): void {
+    this.router.navigate(['/artists']);
+  }
+
   private loadInitialData(): void {
-    // Cargar playlists del usuario o música recomendada
+    
     this.spotifyService.getUserPlaylists().subscribe({
       next: (playlists) => {
         console.log('Playlists cargadas:', playlists);

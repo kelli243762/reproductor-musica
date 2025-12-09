@@ -13,11 +13,17 @@ export class SearchBarComponent {
   @Output() search = new EventEmitter<string>();
   searchQuery: string = '';
 
+
+  
+
   onSearch(): void {
     if (this.searchQuery.trim()) {
       this.search.emit(this.searchQuery);
     }
   }
+
+
+
 
   onKeyPress(event: KeyboardEvent): void {
     if (event.key === 'Enter') {

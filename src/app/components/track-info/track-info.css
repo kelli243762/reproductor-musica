@@ -4,7 +4,7 @@
   margin-bottom: 40px;
 }
 
-/* Sin canción */
+
 .no-track {
   text-align: center;
   padding: 60px 20px;
@@ -27,7 +27,7 @@
   font-size: 1rem;
 }
 
-/* Con canción */
+
 .track-info {
   display: flex;
   flex-direction: column;
@@ -102,7 +102,7 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .album-art {
     width: 200px;

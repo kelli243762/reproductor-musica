@@ -44,3 +44,68 @@ export interface PlayerState {
   duration: number;
   volume: number;
 }
+
+
+export interface ArtistSearchResponse {
+  artists: {
+    items: ArtistDetailed[];
+    total: number;
+  };
+}
+
+
+export interface ArtistDetailed {
+  id: string;
+  name: string;
+  images: Image[];
+  genres: string[];
+  popularity: number;
+  followers: {
+    total: number;
+  };
+  external_urls: {
+    spotify: string;
+  };
+  uri: string;
+}
+
+
+export interface AlbumsResponse {
+  items: AlbumDetailed[];
+  total: number;
+}
+
+
+export interface AlbumDetailed {
+  id: string;
+  name: string;
+  images: Image[];
+  release_date: string;
+  total_tracks: number;
+  artists: Artist[];
+  album_type: string;
+  external_urls: {
+    spotify: string;
+  };
+  uri: string;
+}
+
+
+export interface AlbumTracksResponse {
+  items: AlbumTrack[];
+  total: number;
+}
+
+
+export interface AlbumTrack {
+  id: string;
+  name: string;
+  artists: Artist[];
+  duration_ms: number;
+  track_number: number;
+  preview_url: string | null;
+  uri: string;
+  external_urls: {
+    spotify: string;
+  };
+}

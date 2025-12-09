@@ -1,5 +1,5 @@
 <div class="playlist-container">
-  <!-- Tabs -->
+  
   <div class="playlist-tabs">
     <button 
       class="tab-button"
@@ -15,7 +15,7 @@
     </button>
   </div>
 
-  <!-- Contenido de Playlist -->
+  
   <div class="playlist-content" *ngIf="activeTab === 'playlist'">
     <div *ngIf="tracks.length === 0" class="empty-state">
       <p>🎵</p>
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <!-- Contenido de Búsqueda -->
+  
   <div class="playlist-content" *ngIf="activeTab === 'search'">
     <div *ngIf="searchResults.length === 0" class="empty-state">
       <p>🔍</p>

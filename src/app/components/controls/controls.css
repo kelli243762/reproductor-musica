@@ -126,7 +126,7 @@
   font-weight: 600;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .main-controls {
     gap: 15px;

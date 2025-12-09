@@ -67,7 +67,7 @@
   opacity: 1;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .progress-bar-container {
     gap: 10px;

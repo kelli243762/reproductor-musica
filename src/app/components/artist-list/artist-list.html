@@ -1,0 +1,38 @@
+<div class="artist-list-container">
+  <header class="search-header">
+    <h2>Buscar Artistas</h2>
+    <app-search-bar (search)="onSearch($event)"></app-search-bar>
+  </header>
+
+  <div *ngIf="isLoading" class="loading">
+    <p>Buscando artistas...</p>
+  </div>
+
+  <div class="artists-grid" *ngIf="!isLoading && artists.length > 0">
+    <div 
+      class="artist-card" 
+      *ngFor="let artist of artists"
+
+
+      (click)="goToArtistAlbums(artist.id)"> //Click
+
+      
+      <div class="artist-image">
+        <img [src]="getArtistImage(artist)" [alt]="artist.name">
+      </div>
+      <div class="artist-info">
+        <h3>{{ artist.name }}</h3>
+        <p class="followers">{{ artist.followers.total.toLocaleString() }} seguidores</p>
+        <div class="genres" *ngIf="artist.genres.length > 0">
+          <span class="genre" *ngFor="let genre of artist.genres.slice(0, 3)">
+            {{ genre }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-results" *ngIf="!isLoading && artists.length === 0">
+    <p>Busca un artista para comenzar</p>
+  </div>
+</div>
